@@ -11,9 +11,9 @@ const getTotalPrice = (arr, count) => arr.reduce((_, obj) => {
 }, 0)
 
 
-// const getTotalSum = (obj, path) => {
-//   Object.keys(obj).reduce((sum, key) => console.log(obj[key].path))
-// }
+const getTotalSum = (obj, path) => {
+  return Object.keys(obj).reduce((sum, key) => obj[key][path] + sum, 0)
+}
 
 const cart = (state = initialState, action) => {
   switch(action.type){
@@ -36,10 +36,10 @@ const cart = (state = initialState, action) => {
         }
       }
 
-      // const totalCount = getTotalSum(newCartItems, 'totalCount')
-      // const totalPrice = getTotalSum(newCartItems, 'totalPrice')
-      const totalCount = Object.keys(newCartItems).reduce((sum, key) => newCartItems[key].totalCount + sum, 0 )
-      const totalPrice = Object.keys(newCartItems).reduce((sum, key) => newCartItems[key].totalPrice + sum, 0 )
+      const totalCount = getTotalSum(newCartItems, 'totalCount')
+      const totalPrice = getTotalSum(newCartItems, 'totalPrice')
+      // const totalCount = Object.keys(newCartItems).reduce((sum, key) => newCartItems[key].totalCount + sum, 0 )
+      // const totalPrice = Object.keys(newCartItems).reduce((sum, key) => newCartItems[key].totalPrice + sum, 0 )
 
     return {
       ...state,
@@ -83,8 +83,10 @@ const cart = (state = initialState, action) => {
         }
       }
 
-      const totalCount = Object.keys(newCartItems).reduce((sum, key) => newCartItems[key].totalCount + sum, 0 )
-      const totalPrice = Object.keys(newCartItems).reduce((sum, key) => newCartItems[key].totalPrice + sum, 0 )
+      const totalCount = getTotalSum(newCartItems, 'totalCount')
+      const totalPrice = getTotalSum(newCartItems, 'totalPrice')
+      // const totalCount = Object.keys(newCartItems).reduce((sum, key) => newCartItems[key].totalCount + sum, 0 )
+      // const totalPrice = Object.keys(newCartItems).reduce((sum, key) => newCartItems[key].totalPrice + sum, 0 )
 
       return {
         ...state,
@@ -108,8 +110,11 @@ const cart = (state = initialState, action) => {
           totalPrice: getTotalPrice(oldItems, currentCount)
         }
       }
-      const totalCount = Object.keys(newCartItems).reduce((sum, key) => newCartItems[key].totalCount + sum, 0 )
-      const totalPrice = Object.keys(newCartItems).reduce((sum, key) => newCartItems[key].totalPrice + sum, 0 )
+
+      const totalCount = getTotalSum(newCartItems, 'totalCount')
+      const totalPrice = getTotalSum(newCartItems, 'totalPrice')
+      // const totalCount = Object.keys(newCartItems).reduce((sum, key) => newCartItems[key].totalCount + sum, 0 )
+      // const totalPrice = Object.keys(newCartItems).reduce((sum, key) => newCartItems[key].totalPrice + sum, 0 )
 
       return {
         ...state,

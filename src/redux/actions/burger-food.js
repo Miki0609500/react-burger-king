@@ -9,6 +9,7 @@ export const setLoaded = (isLoading) => ({ type: SET_LOADING, payload: isLoading
 
 export const getBurgerFood = () => async (dispatch) => {
   dispatch(setLoaded(true))
-  const resp = await  axios.get(`http://localhost:3003/bk_food`)
+  const resp = await  axios.get(`https://60e0bf126b689e001788cbb0.mockapi.io/items`)
+  // const resp = await  axios.get(`http://localhost:3003/bk_food`)
   dispatch(setBurgerFood(resp.data))
 }
